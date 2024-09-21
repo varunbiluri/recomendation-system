@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+</head>
+<body>
+    <h1>Movie Recommendation System</h1>
+    <input type="number" id="user_id" placeholder="Enter User ID" />
+    <button onclick="getRecommendations()">Get Recommendations</button>
+
+    <h2>Recommended Movies:</h2>
+    <ul id="movies-list"></ul>
+
+    <script>
+        function getRecommendations() {
+            const userId = document.getElementById('user_id').value;
+            fetch(`http://127.0.0.1:5000/recommend/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const movieList = document.getElementById('movies-list');
+                    movieList.innerHTML = '';
+                    data.forEach(movie => {
+                        const li = document.createElement('li');
+                        li.textContent = movie;
+                        movieList.appendChild(li);
+                    });
+                });
+        }
+     </script>
+     
+</body>
+</html>
