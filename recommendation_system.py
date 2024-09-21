@@ -42,6 +42,7 @@ class MatrixFactorization(nn.Module):
 embedding_dim = 50
 model = MatrixFactorization(num_users, num_movies, embedding_dim)
 
+
 # Define loss function and optimizer
 criterion = nn.MSELoss()  # Mean Squared Error for regression tasks
 optimizer = optim.Adam(model.parameters(), lr=0.01)
